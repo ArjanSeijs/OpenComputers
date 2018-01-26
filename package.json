@@ -1,0 +1,27 @@
+{
+  "name": "opencomputers",
+  "version": "0.0.0",
+  "private": false,
+  "description": "OpenComputers Server Bridge Communication FTB Modded Minecraft",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArjanSeijs/OpenComputers"
+  },
+  "author": "Arjan Seijs & Stijn Swart",
+  "scripts": {
+    "start": "node app.js 5000",
+    "test": "node tests/_testRunner.js"
+  },
+  "dependencies": {
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "~4.15.5",
+    "morgan": "~1.9.0",
+    "serve-favicon": "~2.4.5"
+  },
+  "devDependencies": {
+    "simple-tests-js": "^1.0.2"
+  }
+}

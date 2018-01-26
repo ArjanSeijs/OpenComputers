@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <script src="../script/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<h1><%= title %></h1>
+<label for="send"></label><textarea id="send">
+</textarea>
+<input type="button" onclick="send()">
+<script>
+    var get = function() {
+        $.ajax({
+            type: "GET",
+            url: "http://wyvern.xyz:5432/code/get",
+            data: null,
+            success: function (data) {
+                console.log("Data Received:")
+                document.getElementById("response").innerHTML = data;
+            },
+            error: function (error) {
+                alert(error);
+            }
+        });
+    }
+
+    var send = function () {
+        var data = {code: document.getElementById("send").value};
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            url: "http://wyvern.xyz:5432/code/set",
+            data: data,
+            error: function (error) {
+                alert(error);
+            },
+            success: function (data) {
+                console.log("Response:")
+                console.log(data);
+                get()
+            }
+        });
+    }
+
+
+    get()
+</script>
+<h1>Last send code:</h1>
+<code id="response" style="white-space: pre-line">
+
+</code>
+</body>
+</html>
