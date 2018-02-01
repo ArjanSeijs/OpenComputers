@@ -1,3 +1,4 @@
+<%/*global title*/%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,13 +11,13 @@
 </textarea>
 <input type="button" onclick="send()">
 <script>
-    var get = function() {
+    /*global $*/
+    var get = function () {
         $.ajax({
             type: "GET",
             url: "http://wyvern.xyz:5432/code/get",
             data: null,
             success: function (data) {
-                console.log("Data Received:")
                 document.getElementById("response").innerHTML = data;
             },
             error: function (error) {
@@ -27,7 +28,6 @@
 
     var send = function () {
         var data = {code: document.getElementById("send").value};
-        console.log(data);
         $.ajax({
             type: "POST",
             url: "http://wyvern.xyz:5432/code/set",
@@ -35,9 +35,7 @@
             error: function (error) {
                 alert(error);
             },
-            success: function (data) {
-                console.log("Response:")
-                console.log(data);
+            success: function () {
                 get()
             }
         });

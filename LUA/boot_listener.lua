@@ -10,7 +10,7 @@ if not component then
         component = require("component")
     end
 end
-local internet = component.proxy(component.list(""))
+local internet = component.proxy(component.list("internet"))
 
 local url = "http://wyvern.xyz:5432/code/get"
 local code = "print(\"No Code Received\")"
@@ -39,10 +39,13 @@ function getCode()
     local rcode, succes, headers = request.response()
 
     if request then
-        code = readRequest(request)
+        return readRequest(request)
     end
+    return code;
 end
 
-getCode()
-local f = load(code)
-f()
+code = getCode()
+if code then
+    local f = load(code)
+    f()
+end
